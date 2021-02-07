@@ -1,0 +1,8 @@
+alias gp='git push'
+alias gfm='git pull'
+alias gc='git commit'
+alias gs='git stash'
+alias gws='git status'
+alias gm='git merge'
+alias gco='git checkout'
+alias gia='git add'
