@@ -4,4 +4,6 @@ if test (git -C $HOME/.dotfiles status 2> /dev/null | tail -n1) != "nothing to c
 end
 
 # Add /opt/bin to PATH
- contains /opt/bin $fish_user_paths; or set -Ua fish_user_paths /opt/bin
+contains /opt/bin $fish_user_paths; or set -Ua fish_user_paths /opt/bin
+# Add .dotfiles/bin to PATH
+contains $HOME/.dotfiles/bin $fish_user_paths; or set -Ua fish_user_paths $HOME/.dotfiles/bin
