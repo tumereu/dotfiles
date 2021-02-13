@@ -1,5 +1,7 @@
+" Load all plugins
+call plug#begin()
+Plug 'justinmk/vim-sneak'
+call plug#end()
 
-" Neovide settings
-let g:neovide_cursor_vfx_mode = "railgun"
-let g:neovide_fullscreen=v:true
-
+" Vim-sneak settings
+let g:sneak#label = 1
