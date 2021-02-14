@@ -1,5 +1,5 @@
 " Load all plugins
-call plug#begin()
+call plug#begin('~/.config/nvim/plugged')
 Plug 'justinmk/vim-sneak'
 call plug#end()
 
