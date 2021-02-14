@@ -62,8 +62,11 @@ let g:LanguageClient_autoStart = 1
 set splitright
 set splitbelow
 
-" Indentation sizes
-" TODO use EditorConfig?
+" Autosaving: save buffer if no keypresses in 250ms
+set updatetime=250
+autocmd CursorHold,CursorHoldI * silent update
+
+" Indentation sizes, TODO use EditorConfig? 
 set ts=4
 set shiftwidth=4
 set ai sw=4
