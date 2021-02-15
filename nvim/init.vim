@@ -57,6 +57,13 @@ let g:LanguageClient_serverCommands = {
 " Automatically start language servers.
 let g:LanguageClient_autoStart = 1
 
+"" CtrlP FuzzyFinder configs
+" Invoke fuzzy finder with leader p
+let g:ctrlp_map = '<leader>l'
+let g:ctrlp_cmd = 'CtrlP'
+" Figure out parent directory based on nearest .git folder
+let g:ctrlp_working_path_mode = 'r'
+
 "" Vim general behaviour configs
 " Splitting behaviour: open the new pane right/below
 set splitright
