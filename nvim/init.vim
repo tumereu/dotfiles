@@ -35,6 +35,18 @@ Plug 'nvim-lua/lsp_extensions.nvim'
 " Autocompletion framework for built-in LSP
 Plug 'nvim-lua/completion-nvim'
 
+" Add the telescope plugin for various popup windows
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
+" Add a lightbulb whenever there are code actions available
+Plug 'kosayoda/nvim-lightbulb'
+
+" Adds a more refined autosave functionality than what can be
+" achieved with simple autocmds
+Plug '907th/vim-auto-save'
+
 call plug#end()
 
 "" Color/syntax highlighting settings
@@ -42,7 +54,7 @@ syntax on
 colorscheme onedark
 
 "" Vim-sneak settings
-let g:sneak#label = 1
+"let g:sneak#label = 1
 
 "" CHADtree settings
 " Auto start CHADtree when opening a directory
@@ -53,6 +65,9 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 set noshowmode
 " Set the airline theme
 let g:airline_theme='bubblegum'
+
+"" Nvim-lightbulb configuration/activation
+autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
 
 "" Rust configurations
 autocmd BufReadPost *.rs setlocal filetype=rust
@@ -83,7 +98,9 @@ set updatetime=300
 
 " Autosaving: save buffer if no keypresses in 250ms
 let g:cursorhold_updatetime = 250
-autocmd CursorHold,CursorHoldI * update
+"TODO remove if not needed autocmd CursorHold,CursorHoldI *.{rs,md,vim,tex,xml,json,yml,toml,fish,sh,txt} write
+let g:auto_save = 1
+let g:auto_save_events = ["InsertLeave", "TextChanged", "CursorHold", "CursorHoldI"]
 
 " Indentation sizes, TODO use EditorConfig? 
 set ts=4
@@ -91,6 +108,10 @@ set shiftwidth=4
 set ai sw=4
 " Use spaces instead of tabs
 set expandtab
+
+" Enable type inlay hints
+autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
+\ lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment", enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }
 
 " Always show the sign column
 set signcolumn=yes
@@ -103,6 +124,9 @@ set completeopt=menuone,noinsert,noselect
 " Avoid showing extra messages when using completion
 " set shortmess=A
 
+" Show diagnostic popup on cursor hold
+autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+
 "" Custom keybinds
 " change the leader key to ";"
 let mapleader=";"
@@ -110,9 +134,33 @@ let mapleader=";"
 " Use <Tab> as trigger key for autocompletion
 imap <Tab> <Plug>(completion_smart_tab)
 imap <S-Tab> <Plug>(completion_smart_s_tab)
-" Disable <Enter> based autocomplete selection
-" TODO Does notwrk?
-inoremap <CR> <C-R>=pumvisible() ? "\<lt>C-E>\<lt>CR>" : "\<lt>CR>"<CR>
+
+" Code navigation shortcuts
+nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+
+" Goto previous/next diagnostic warning/error
+nnoremap <silent> g[ <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap <silent> g] <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" LSP code navigation
+nnoremap <leader>fr <cmd>Telescope builtin.lsp_references<cr>
+nnoremap <leader>sd <cmd>Telescope builtin.lsp_document_symbols<cr>
+nnoremap <leader>sw <cmd>Telescope builtin.lsp_workspace_symbols<cr>
+nnoremap <leader>a <cmd>Telescope builtin.lsp_code_actions<cr>
 
 " Configure LSP
 lua <<EOF
