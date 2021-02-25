@@ -157,10 +157,10 @@ nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " LSP code navigation
-nnoremap <leader>fr <cmd>Telescope builtin.lsp_references<cr>
-nnoremap <leader>sd <cmd>Telescope builtin.lsp_document_symbols<cr>
-nnoremap <leader>sw <cmd>Telescope builtin.lsp_workspace_symbols<cr>
-nnoremap <leader>a <cmd>Telescope builtin.lsp_code_actions<cr>
+nnoremap <leader>fr <cmd>Telescope lsp_references<cr>
+nnoremap <leader>sd <cmd>Telescope lsp_document_symbols<cr>
+nnoremap <leader>sw <cmd>Telescope lsp_workspace_symbols<cr>
+nnoremap <leader>a  <cmd>Telescope lsp_code_actions<cr>
 
 " Configure LSP
 lua <<EOF
@@ -179,7 +179,7 @@ nvim_lsp.rust_analyzer.setup({ on_attach=on_attach })
 -- Enable diagnostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = true,
+    virtual_text = false,
     signs = true,
     update_in_insert = true,
   }
