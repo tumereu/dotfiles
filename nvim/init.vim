@@ -16,9 +16,6 @@ Plug 'joshdick/onedark.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-" Session management simplification
-Plug 'tpope/vim-obsession'
-
 " Fuzzy file finder
 Plug 'ctrlpvim/ctrlp.vim'
 
@@ -46,6 +43,9 @@ Plug 'kosayoda/nvim-lightbulb'
 " Adds a more refined autosave functionality than what can be
 " achieved with simple autocmds
 Plug '907th/vim-auto-save'
+
+" Rust plugin
+Plug 'rust-lang/rust.vim'
 
 call plug#end()
 
@@ -94,7 +94,7 @@ let g:ctrlp_working_path_mode = 'r'
 set splitright
 set splitbelow
 
-set updatetime=300
+set updatetime=1000
 
 " Autosaving: save buffer if no keypresses in 250ms
 let g:cursorhold_updatetime = 250
@@ -102,10 +102,8 @@ let g:cursorhold_updatetime = 250
 let g:auto_save = 1
 let g:auto_save_events = ["InsertLeave", "TextChanged", "CursorHold", "CursorHoldI"]
 
-" Indentation sizes, TODO use EditorConfig? 
-set ts=4
-set shiftwidth=4
-set ai sw=4
+" Indent by filetype
+filetype plugin indent on
 " Use spaces instead of tabs
 set expandtab
 
@@ -128,12 +126,17 @@ set completeopt=menuone,noinsert,noselect
 autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
 
 "" Custom keybinds
-" change the leader key to ";"
-let mapleader=";"
+" change the leader key to ","
+let mapleader=","
 
 " Use <Tab> as trigger key for autocompletion
 imap <Tab> <Plug>(completion_smart_tab)
 imap <S-Tab> <Plug>(completion_smart_s_tab)
+
+" Auto-complete {,[,( when typed and pressing enter
+inoremap {<CR> {<CR>}<C-o>O
+inoremap [<CR> [<CR>]<C-o>O
+inoremap (<CR> (<CR>)<C-o>O
 
 " Code navigation shortcuts
 nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
@@ -150,17 +153,14 @@ nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> g[ <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <silent> g] <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 
-" Find files using Telescope command-line sugar.
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-
 " LSP code navigation
 nnoremap <leader>fr <cmd>Telescope lsp_references<cr>
 nnoremap <leader>sd <cmd>Telescope lsp_document_symbols<cr>
 nnoremap <leader>sw <cmd>Telescope lsp_workspace_symbols<cr>
 nnoremap <leader>a  <cmd>Telescope lsp_code_actions<cr>
+
+" Toggle CHADtree
+nnoremap <leader>v <cmd>CHADopen<cr>
 
 " Configure LSP
 lua <<EOF
