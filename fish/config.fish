@@ -9,3 +9,13 @@ end
 contains /opt/bin $fish_user_paths; or set -Ua fish_user_paths /opt/bin
 # Add .dotfiles/bin to PATH
 contains $HOME/.dotfiles/bin $fish_user_paths; or set -Ua fish_user_paths $HOME/.dotfiles/bin
+
+# Aliases the java/javac-commands into something which uses the currently selected
+# JAVA_HOME environment variable. Autoloading functions do not seem to work for these,
+# for one reason or another.
+function java
+    $JAVA_HOME/bin/java $argv
+end
+function javac
+    $JAVA_HOME/bin/javac $argv
+end

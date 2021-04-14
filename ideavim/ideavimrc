@@ -1,26 +1,18 @@
 set ignorecase
 set smartcase
 " When scrolling, display 3 lines above/below the cursor
-set scrolloff=3         
-set easymotion
+set scrolloff=3
+" Enable vim sneak         
+set sneak
 " Enable the surround-plugin
 set surround
 
 " Integrate with system clipboard
 set clipboard=unnamedplus,unnamed
 
-" Map spacebar as leader
-let mapleader = " "
+" Map comma as leader
+let mapleader = ","
 nmap <space> <nop>
-vmap <space> <nop>
-map <c-s> <esc>
-
-" These create newlines like o and O but stay in normal mode
-nmap zj myo<Esc>`y
-nmap zk myO<Esc>`y
-" These remove newlines from above and below for some quick formatting
-nmap dzj myjdd`y
-nmap dzk mykdd`y
 
 " Search for a visual mode selection with //
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
@@ -28,22 +20,22 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 " IntelliJ actions ala vim
 nmap <leader>g :action GotoImplementation<cr>
 nmap <leader>j :action GotoDeclaration<cr>
-nmap <leader>ns :action GotoSymbol<cr>
-nmap <leader>nf :action GotoFile<cr>
-nmap <leader>nc :action GotoClass<cr>
-nmap <leader>nm :action FileStructurePopup<cr>
+nmap <leader>s :action GotoSymbol<cr>
+nmap <leader>l :action GotoFile<cr>
+nmap <leader>c :action GotoClass<cr>
+nmap <leader>m :action FileStructurePopup<cr>
 nmap <leader>d :action ShowErrorDescription<cr>
 nmap <Leader>zp :action GenerateGetterAndSetter<cr>
-nmap <leader>ss :action FindInPath<cr>
-nmap <leader>sr :action ReplaceInPath<cr>
+nmap <leader>f :action FindInPath<cr>
+nmap <leader>r :action ReplaceInPath<cr>
 
 " Visual mode : automatically inserts some crap, use <bs> to get rid of it
-vmap <leader>ns :<bs><bs><bs><bs><bs>action GotoSymbol<cr>
-vmap <leader>nf :<bs><bs><bs><bs><bs>action GotoFile<cr>
-vmap <leader>nc :<bs><bs><bs><bs><bs>action GotoClass<cr>
-vmap <leader>nm :<bs><bs><bs><bs><bs>action FileStructurePopup<cr>
-vmap <leader>ss :<bs><bs><bs><bs><bs>action FindInPath<cr>
-vmap <leader>sr :<bs><bs><bs><bs><bs>action ReplaceInPath<cr>
+vmap <leader>s :<bs><bs><bs><bs><bs>action GotoSymbol<cr>
+vmap <leader>l :<bs><bs><bs><bs><bs>action GotoFile<cr>
+vmap <leader>c :<bs><bs><bs><bs><bs>action GotoClass<cr>
+vmap <leader>m :<bs><bs><bs><bs><bs>action FileStructurePopup<cr>
+vmap <leader>f :<bs><bs><bs><bs><bs>action FindInPath<cr>
+vmap <leader>r :<bs><bs><bs><bs><bs>action ReplaceInPath<cr>
 
 " Ctrl+navigation keys in insert mode should move the cursor
 imap <C-k> <C-o>k
@@ -53,9 +45,7 @@ imap <C-l> <C-o>l
 
 " Next/back IntelliJ navigation, typically alt-arrows
 nmap <a-h> :action Back<cr>
-nmap <leader>h :action Back<cr>
 nmap <a-l> :action Forward<cr>
-nmap <leader>l :action Forward<cr>
 
 " Append after current word
 nmap <leader>a hea
@@ -65,13 +55,13 @@ nmap <leader>A hEa
 nmap <leader>i :action EmacsStyleIndent<cr>I
 
 " KJump shortcuts, use `j to jump back to the starting location
-nmap <leader>f mj :action KJumpAction<cr>
-nmap <leader>w mj :action KJumpAction.Word0<cr>
-nmap <leader>l mj :action KJumpAction.Line<cr>
-nmap <leader>s mj :action KJumpAction.Word1<cr>
+"nmap <leader>f mj :action KJumpAction<cr>
+"nmap <leader>w mj :action KJumpAction.Word0<cr>
+"nmap <leader>l mj :action KJumpAction.Line<cr>
+"nmap <leader>s mj :action KJumpAction.Word1<cr>
 
-vmap <leader>f mj :action KJumpAction<cr>
-vmap <leader>w mj :action KJumpAction.Word0<cr>
-vmap <leader>l mj :action KJumpAction.Line<cr>
-vmap <leader>s mj :action KJumpAction.Word1<cr>
+"vmap <leader>f mj :action KJumpAction<cr>
+"vmap <leader>w mj :action KJumpAction.Word0<cr>
+"vmap <leader>l mj :action KJumpAction.Line<cr>
+"vmap <leader>s mj :action KJumpAction.Word1<cr>
 
