@@ -11,8 +11,7 @@ set surround
 set clipboard=unnamedplus,unnamed
 
 " Map comma as leader
-let mapleader = ","
-nmap <space> <nop>
+let mapleader = "\"
 
 " Search for a visual mode selection with //
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
@@ -47,21 +46,5 @@ imap <C-l> <C-o>l
 nmap <a-h> :action Back<cr>
 nmap <a-l> :action Forward<cr>
 
-" Append after current word
-nmap <leader>a hea
-" Append after current WORD
-nmap <leader>A hEa
 " Indent cursor to correct position and activate insert mode
 nmap <leader>i :action EmacsStyleIndent<cr>I
-
-" KJump shortcuts, use `j to jump back to the starting location
-"nmap <leader>f mj :action KJumpAction<cr>
-"nmap <leader>w mj :action KJumpAction.Word0<cr>
-"nmap <leader>l mj :action KJumpAction.Line<cr>
-"nmap <leader>s mj :action KJumpAction.Word1<cr>
-
-"vmap <leader>f mj :action KJumpAction<cr>
-"vmap <leader>w mj :action KJumpAction.Word0<cr>
-"vmap <leader>l mj :action KJumpAction.Line<cr>
-"vmap <leader>s mj :action KJumpAction.Word1<cr>
-
