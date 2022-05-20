@@ -6,6 +6,12 @@ set scrolloff=3
 set sneak
 " Enable the surround-plugin
 set surround
+" Enable IntelliJ join-behaviour
+set ideajoin
+" Highlight the yanked yext
+set highlightedyank
+" Improve paragraph handling
+set vim-paragraph-motion
 
 " Integrate with system clipboard
 set clipboard=unnamedplus,unnamed
