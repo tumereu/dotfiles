@@ -58,3 +58,5 @@ nmap <leader>i :action EmacsStyleIndent<cr>I
 " Leader-p to paste from 0-register
 nmap <leader>p "0p
 nmap <leader>P "0P
+vmap <leader>p "0p
+vmap <leader>P "0P
