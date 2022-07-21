@@ -54,3 +54,7 @@ nmap <a-l> :action Forward<cr>
 
 " Indent cursor to correct position and activate insert mode
 nmap <leader>i :action EmacsStyleIndent<cr>I
+
+" Leader-p to paste from 0-register
+nmap <leader>p "0p
+nmap <leader>P "0P
