@@ -22,3 +22,6 @@ end
 function javac
     $JAVA_HOME/bin/javac $argv
 end
+
+# Source direnv
+direnv hook fish | source
