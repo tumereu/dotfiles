@@ -1,0 +1,4 @@
+# Defined in - @ line 1
+function run-lms --wraps=mvn17\ clean\ install\ -Dmaven.test.skip=true\ -Ddetekt.skip=true\ \&\&\ java\ -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=\\\*:8778\ -jar\ target/license-management-server-\*.jar\ --spring.config.additional-location=file:./local.properties --description alias\ run-lms\ mvn17\ clean\ install\ -Dmaven.test.skip=true\ -Ddetekt.skip=true\ \&\&\ java\ -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=\\\*:8778\ -jar\ target/license-management-server-\*.jar\ --spring.config.additional-location=file:./local.properties
+  mvn17 clean install -Dmaven.test.skip=true -Ddetekt.skip=true && java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=\*:8778 -jar target/license-management-server-*.jar --spring.config.additional-location=file:./local.properties $argv;
+end
