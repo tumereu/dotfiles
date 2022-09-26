@@ -1,6 +1,6 @@
 fundle plugin 'FabioAntunes/fish-nvm'
 fundle plugin 'edc/bass'
-fundle install
+fundle init
 
 # Check if the dotfiles directory is dirty!
 if test (git -C $HOME/.dotfiles status 2> /dev/null | tail -n1) != "nothing to commit, working tree clean"
