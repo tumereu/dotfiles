@@ -34,6 +34,10 @@ nmap <Leader>zp :action GenerateGetterAndSetter<cr>
 nmap <leader>f :action FindInPath<cr>
 nmap <leader>r :action ReplaceInPath<cr>
 
+" A handy shortcut when working with line limits: select around parenthesis and format.
+" This can be used (at least) to line break each parameter on their own line in Kotlin
+nmap <leader>b va) :action ReformatCode<Esc>
+
 " Visual mode : automatically inserts some crap, use <bs> to get rid of it
 vmap <leader>s :<bs><bs><bs><bs><bs>action GotoSymbol<cr>
 vmap <leader>l :<bs><bs><bs><bs><bs>action GotoFile<cr>
