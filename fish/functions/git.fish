@@ -8,3 +8,5 @@ alias  gm='git merge'
 alias gco='git checkout --recurse-submodules'
 alias gia='git add'
 alias gpc='git push -u origin HEAD'
+alias gbd="git fetch -p && LANG=en_US git branch -vv | awk '/: gone]/{print \$1}' | xargs git branch -D"
+alias  gC='git clone --recursive'
