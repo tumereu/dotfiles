@@ -10,3 +10,4 @@ alias gia='git add'
 alias gpc='git push -u origin HEAD'
 alias gbd="git fetch -p && LANG=en_US git branch -vv | awk '/: gone]/{print \$1}' | xargs git branch -D"
 alias  gC='git clone --recursive'
+alias  gd='GIT_EXTERNAL_DIFF=difft git diff'

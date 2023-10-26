@@ -13,8 +13,9 @@ set highlightedyank
 " Improve paragraph handling
 set vim-paragraph-motion
 
-" Integrate with system clipboard
+" Integrate with system/IntelliJ clipboard
 set clipboard=unnamedplus,unnamed
+set ideaput
 
 " Map comma as leader
 let mapleader = "\"
