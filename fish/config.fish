@@ -13,6 +13,8 @@ end
 contains /opt/bin $fish_user_paths; or set -Ua fish_user_paths /opt/bin
 # Add .dotfiles/bin to PATH
 contains $HOME/.dotfiles/bin $fish_user_paths; or set -Ua fish_user_paths $HOME/.dotfiles/bin
+# Add rust binaries to PATH
+contains $HOME/.cargo/bin $fish_user_paths; or set -Ua fish_user_paths $HOME/.cargo/bin
 
 # Use Jdk8 as the default java home
 set -Ux JAVA_HOME /opt/jdk/jdk-17/
