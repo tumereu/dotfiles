@@ -1,0 +1,2 @@
+# GitHub repositories; exact commits live in the Ansible version lock.
+jorgebucaran/fisher
